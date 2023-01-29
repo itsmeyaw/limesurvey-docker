@@ -13,7 +13,7 @@ RUN sed -i "s|ServerAdmin webmaster@localhost|ServerAdmin \${LIMESURVEY_ADMIN_EM
 
 COPY --from=builder limesurvey /var/www/html
 
-RUN chmod -R 666 "/var/www/html/admin"
+RUN chmod -R 555 "/var/www/html/admin"
 RUN chmod -R 755 "/var/www/html/tmp" "/var/www/html/upload" "/var/www/html/application/config"
 
 
