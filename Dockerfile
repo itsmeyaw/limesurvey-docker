@@ -7,6 +7,8 @@ RUN unzip limesurvey.zip
 FROM php:8.0-apache
 LABEL org.opencontainers.image.authors="yudhistira.wibowo@itsmeyaw.id"
 
+RUN apt-get upgrade && apt-get update
+
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 RUN apt-get install php-mbstring
@@ -21,5 +23,7 @@ COPY --from=builder limesurvey /var/www/html
 
 RUN chmod -R 555 "/var/www/html/admin"
 RUN chmod -R 755 "/var/www/html/tmp" "/var/www/html/upload" "/var/www/html/application/config"
+
+RUN apt-get clean
 
 
