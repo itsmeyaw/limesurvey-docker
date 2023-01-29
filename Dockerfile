@@ -8,12 +8,12 @@ FROM php:apache
 LABEL org.opencontainers.image.authors="yudhistira.wibowo@itsmeyaw.id"
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-RUN sed -i 's|#ServerName www.example.com|ServerName $LIMESURVEY_DOMAIN|g' /etc/apache2/sites-available/*.conf
-RUN sed -i 's|ServerAdmin webmaster@localhost|ServerAdmin $LIMESURVEY_ADMIN_EMAIL|g' /etc/apache2/sites-available/*.conf
+RUN sed -i "s|#ServerName www.example.com|ServerName \${LIMESURVEY_DOMAIN}|g" /etc/apache2/sites-available/*.conf
+RUN sed -i "s|ServerAdmin webmaster@localhost|ServerAdmin \${LIMESURVEY_ADMIN_EMAIL}|g" /etc/apache2/sites-available/*.conf
 
 COPY --from=builder limesurvey /var/www/html
 
-RUN chmod -R 444 "/var/www/html/admin"
+RUN chmod -R 666 "/var/www/html/admin"
 RUN chmod -R 755 "/var/www/html/tmp" "/var/www/html/upload" "/var/www/html/application/config"
 
 

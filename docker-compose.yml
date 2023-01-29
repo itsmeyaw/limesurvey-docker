@@ -4,11 +4,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        LIMESURVEY_DOMAIN: ${LIMESURVEY_DOMAIN}
-        LIMESURVEY_ADMIN_EMAIL: ${LIMESURVEY_ADMIN_EMAIL}
     container_name: ${LIMESURVEY_CONTAINER_NAME:-limesurvey}
     restart: always
+    environment:
+      LIMESURVEY_DOMAIN: ${LIMESURVEY_DOMAIN}
+      LIMESURVEY_ADMIN_EMAIL: ${LIMESURVEY_ADMIN_EMAIL}
     volumes:
       - ${LIMESURVEY_DIR}/tmp:/var/www/html/tmp
       - ${LIMESURVEY_DIR}/upload:/var/www/html/upload
