@@ -11,7 +11,7 @@ RUN apt-get upgrade && apt-get update
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
-RUN apt-get install php7.4-mbstring
+RUN apt-get install php-mbstring
 
 RUN sed -i "s|short_open_tag = Off|short_open_tag = On|g" "$PHP_INI_DIR/php.ini"
 RUN sed -i "s|mbstring.func_overload = *|mbstring.func_overload = 0|g" "$PHP_INI_DIR/php.ini"
